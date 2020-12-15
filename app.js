@@ -1,7 +1,7 @@
 
 // const socket = io('ws://localhost:8080');
 const socket = io();
-let name = undefined;
+let name = 'Anonymous';
 
 socket.on('message', message => {
     const el = document.createElement('li');
@@ -16,7 +16,7 @@ socket.on('message', message => {
 });
 
 $(window).on('load', () => {
-    $('#nameModal').modal('show');
+    $('#nameModal').modal({backdrop: 'static', keyboard: false});
 });
 
 const sendMessage = () => {
@@ -34,7 +34,20 @@ document.getElementById('compose-message').onkeyup = (e) => {
     }
 }
 
-$('#name-submit')[0].onclick = () => {
+const setName = () => {
     name = $('#name')[0].value;
-    // console.log(name)
+    if (name !== '') {
+        $('#nameModal').modal('hide')
+    }
+}
+
+document.getElementById('name').onkeyup = (e) => {
+    // console.log('key_hit')
+    if (e.key === 'Enter' || e.keyCode === 13) {
+        setName();
+    }
+}
+
+$('#name-submit')[0].onclick = () => {
+    setName();
 }
