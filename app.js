@@ -1,5 +1,3 @@
-
-// const socket = io('ws://localhost:8080');
 const socket = io();
 let name = 'Anonymous';
 
@@ -28,7 +26,6 @@ const sendMessage = () => {
 
 document.querySelector('button').onclick = sendMessage
 document.getElementById('compose-message').onkeyup = (e) => {
-    // console.log('key_hit')
     if (e.key === 'Enter' || e.keyCode === 13) {
         sendMessage();
     }
@@ -42,7 +39,6 @@ const setName = () => {
 }
 
 document.getElementById('name').onkeyup = (e) => {
-    // console.log('key_hit')
     if (e.key === 'Enter' || e.keyCode === 13) {
         setName();
     }
